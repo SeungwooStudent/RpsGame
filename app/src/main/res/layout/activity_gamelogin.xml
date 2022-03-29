@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".GameLoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="139dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Login"
+            android:textColor="@color/black"
+            android:textSize="50dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:gravity="right"
+            android:text="ID : "
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/id_Input"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:hint="ID를 입력해주세요" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="Password : "
+            android:textColor="@color/black"
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/password_Input"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="Password" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/login_Button"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:layout_alignTop="@+id/loginButton"
+            android:layout_alignEnd="@+id/passwordInput"
+            android:layout_marginLeft="55dp"
+            android:text="Log in"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/signup_Button"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:layout_below="@+id/passwordInput"
+            android:layout_toStartOf="@+id/signupButton"
+            android:text="Sign up"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/signupButton2"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:layout_below="@+id/passwordInput"
+        android:layout_marginLeft="130dp"
+        android:layout_toStartOf="@+id/signupButton"
+        android:text="랭킹보기"
+        android:textAllCaps="false" />
+
+
+</LinearLayout>
