@@ -1,6 +1,7 @@
 package com.seungwoo.gym;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -87,6 +88,48 @@ public class GameActivity extends AppCompatActivity {
 
                         for (int j = 0; j < 4; j++) {
 
+                            boolean finishgame = gameManager.finishGame();
+
+                            finishgame = false;
+                            if (finishgame) {
+
+                                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                                        context);
+
+                                alertDialogBuilder.setTitle("게임이 종료되었습니다");
+
+
+                                alertDialogBuilder
+                                        .setMessage("다시 시작하시겠습니까? NO를 누르면 자동으로 랭킹이 등록됩니다.")
+                                        .setCancelable(false)
+                                        .setPositiveButton("YES",
+                                                new DialogInterface.OnClickListener() {
+                                                    public void onClick(
+                                                            DialogInterface dialog, int id) {
+                                                        // 프로그램을 종료한다
+//                                                GameActivity.this.finish();
+                                                        dialog.cancel();
+                                                    }
+                                                })
+                                        .setNegativeButton("NO",
+                                                new DialogInterface.OnClickListener() {
+                                                    public void onClick(
+                                                            DialogInterface dialog, int id) {
+                                                        // 다이얼로그를 취소한다
+                                                        dialog.cancel();
+                                                    }
+                                                });
+
+
+                                // 다이얼로그 생성
+                                AlertDialog alertDialog = alertDialogBuilder.create();
+
+
+                                // 다이얼로그 보여주기
+                                alertDialog.show();
+
+
+                            }
                             try {
                                 Message message = gameHandler.obtainMessage();
                                 Bundle bundle = new Bundle();
@@ -125,47 +168,6 @@ public class GameActivity extends AppCompatActivity {
                 });
                 thread.start();
                 winCountTextView.setText("Win : " + gameManager.getWinCount() + "연승");
-
-
-                boolean finishgame = gameManager.finishGame();
-
-                if (finishgame) {
-
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                            context);
-
-                    alertDialogBuilder.setTitle("게임이 종료되었습니다");
-
-
-                    alertDialogBuilder
-                            .setMessage("다시 시작하시겠습니까? NO를 누르면 자동으로 랭킹이 등록됩니다.")
-                            .setCancelable(false)
-                            .setPositiveButton("YES",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(
-                                                DialogInterface dialog, int id) {
-                                            // 프로그램을 종료한다
-//                                                GameActivity.this.finish();
-                                            dialog.cancel();
-                                        }
-                                    })
-                            .setNegativeButton("NO",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(
-                                                DialogInterface dialog, int id) {
-                                            // 다이얼로그를 취소한다
-                                            dialog.cancel();
-                                        }
-                                    });
-
-
-                    // 다이얼로그 생성
-                    AlertDialog alertDialog = alertDialogBuilder.create();
-
-
-                    // 다이얼로그 보여주기
-                    alertDialog.show();
-                }
 
 
             }

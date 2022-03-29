@@ -28,6 +28,7 @@ public class GameManager {
     //3은 보
 
     public boolean finishGame() {
+
         if (userChoice == 1) { //가위
             if (computerChoice == 1) { //가위
                 winCount = 0;
