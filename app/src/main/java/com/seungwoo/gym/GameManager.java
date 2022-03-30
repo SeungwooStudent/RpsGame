@@ -23,6 +23,7 @@ public class GameManager {
         this.computerChoice = computerChoice;
     }
 
+    public void setWinCount(int winCount) { this.winCount = winCount; }
     //1은 가위
     //2는 바위
     //3은 보

@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,7 +40,7 @@ public class GameActivity extends AppCompatActivity {
         ImageView computerimageView = (ImageView) findViewById(R.id.computer_turn);
         ImageView myimageView = (ImageView) findViewById(R.id.my_turn);
 
-        gameHandler = new GameThread(countTextView);
+        gameHandler = new GameThread(countTextView , this);
         gameManager = new GameManager();
 
 
@@ -88,59 +89,20 @@ public class GameActivity extends AppCompatActivity {
 
                         for (int j = 0; j < 4; j++) {
 
-                            boolean finishgame = gameManager.finishGame();
-
-                            finishgame = false;
-                            if (finishgame) {
-
-                                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                                        context);
-
-                                alertDialogBuilder.setTitle("게임이 종료되었습니다");
-
-
-                                alertDialogBuilder
-                                        .setMessage("다시 시작하시겠습니까? NO를 누르면 자동으로 랭킹이 등록됩니다.")
-                                        .setCancelable(false)
-                                        .setPositiveButton("YES",
-                                                new DialogInterface.OnClickListener() {
-                                                    public void onClick(
-                                                            DialogInterface dialog, int id) {
-                                                        // 프로그램을 종료한다
-//                                                GameActivity.this.finish();
-                                                        dialog.cancel();
-                                                    }
-                                                })
-                                        .setNegativeButton("NO",
-                                                new DialogInterface.OnClickListener() {
-                                                    public void onClick(
-                                                            DialogInterface dialog, int id) {
-                                                        // 다이얼로그를 취소한다
-                                                        dialog.cancel();
-                                                    }
-                                                });
-
-
-                                // 다이얼로그 생성
-                                AlertDialog alertDialog = alertDialogBuilder.create();
-
-
-                                // 다이얼로그 보여주기
-                                alertDialog.show();
-
-
-                            }
                             try {
                                 Message message = gameHandler.obtainMessage();
                                 Bundle bundle = new Bundle();
                                 bundle.putString("msg", gameText[j]);
                                 message.setData(bundle);
                                 gameHandler.sendMessage(message);
-                                Thread.sleep(1000);
+                                Thread.sleep(1200);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                         }
+
+
+
                         scissorsbtn.setVisibility(View.INVISIBLE);
                         rockbtn.setVisibility(View.INVISIBLE);
                         papersbtn.setVisibility(View.INVISIBLE);
@@ -161,8 +123,11 @@ public class GameActivity extends AppCompatActivity {
                         Message message = gameHandler.obtainMessage();
                         Bundle bundle = new Bundle();
                         bundle.putString("msg", gameManager.compare());
+                        bundle.putBoolean("isfinish",!gameManager.finishGame());
                         message.setData(bundle);
                         gameHandler.sendMessage(message);
+
+
                     }
 
                 });
@@ -172,6 +137,7 @@ public class GameActivity extends AppCompatActivity {
 
             }
         });
+
 
     }
 }
