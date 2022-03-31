@@ -23,7 +23,9 @@ public class GameManager {
         this.computerChoice = computerChoice;
     }
 
-    public void setWinCount(int winCount) { this.winCount = winCount; }
+    public void setWinCount(int winCount) {
+        this.winCount = winCount;
+    }
     //1은 가위
     //2는 바위
     //3은 보
@@ -32,35 +34,26 @@ public class GameManager {
 
         if (userChoice == 1) { //가위
             if (computerChoice == 1) { //가위
-                winCount = 0;
                 return false;
             } else if (computerChoice == 2) { //바위
-                winCount = 0;
                 return false;
             } else {
-                winCount++;
                 return true;
             }
         } else if (userChoice == 2) { //바위
             if (computerChoice == 2) { //바위
-                winCount = 0;
                 return false;
             } else if (computerChoice == 1) { //가위
-                winCount++;
                 return true;
             } else {
-                winCount = 0;
                 return false;
             }
         } else {
             if (computerChoice == 3) { //보
-                winCount = 0;
                 return false;
             } else if (computerChoice == 2) { //바위
-                winCount++;
                 return true;
             } else {
-                winCount = 0;
                 return false;
             }
         }

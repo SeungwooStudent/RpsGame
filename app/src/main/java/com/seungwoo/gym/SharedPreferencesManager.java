@@ -3,43 +3,56 @@ package com.seungwoo.gym;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+
 public class SharedPreferencesManager {
     String rankingName[];
     String rankingWin[];
-    SharedPreferences sharedPref;
+    private SharedPreferences sharedPref;
 
-    SharedPreferencesManager(Context context) {
-        sharedPref = context.getSharedPreferences("ranking",Context.MODE_PRIVATE);
+    private static SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager();
+
+    public static SharedPreferencesManager getInstance() { //get같은거
+        return sharedPreferencesManager;
+    }
+
+    SharedPreferencesManager() {
+
+    }
+    public void init(Context context) {
+        if (sharedPref == null) {
+            sharedPref = context.getSharedPreferences("ranking", Context.MODE_PRIVATE);
+        }
         rankingName = new String[3];
         rankingWin = new String[3];
     }
 
-//    SharedPreferences.Editor editor = sharedPref.edit();
-//        editor.putString("ranking1", "오이");
-//        editor.putString("ranking2", "감자");
-//        editor.putString("ranking3", "호박");
-//        editor.putString("rankingwin1", "10");
-//        editor.putString("rankingwin2", "8");
-//        editor.putString("rankingwin3", "7");
-//        editor.commit();
-//
-//    String ranking1 = sharedPref.getString("ranking1", "empty");
-//        firstNameTextView.setText(""+ranking1);
-//
-//    String ranking2 = sharedPref.getString("ranking2", "empty");
-//        secondNameTextView.setText(""+ranking2);
-//
-//    String ranking3 = sharedPref.getString("ranking3", "empty");
-//        thirdNameTextView.setText(""+ranking3);
-//
-//    String rankingwin1 = sharedPref.getString("rankingwin1", "empty");
-//        firstWinTextView.setText(""+rankingwin1);
-//
-//    String rankingwin2 = sharedPref.getString("rankingwin2", "empty");
-//        secondWinTextView.setText(""+rankingwin2);
-//
-//    String rankingwin3 = sharedPref.getString("rankingwin3", "empty");
-//        thirdWinTextView.setText(""+rankingwin3);
+    public void saveData(String name, String win) {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("rankingname1", name);
+        editor.putString("rankingwin1", win);
+        editor.putString("rankingname2", name);
+        editor.putString("rankingwin2", win);
+        editor.putString("rankingname3", name);
+        editor.putString("rankingwin3", win);
+        editor.commit();
+    }
+
+    public void readData() {
+        rankingName[0] = sharedPref.getString("rankingname1", "empty");
+        rankingWin[0] = sharedPref.getString("rankingwin1", "empty");
+        rankingName[1] = sharedPref.getString("rankingname2", "empty");
+        rankingWin[1] = sharedPref.getString("rankingwin2", "empty");
+        rankingName[2] = sharedPref.getString("rankingname3", "empty");
+        rankingWin[2] = sharedPref.getString("rankingwin3", "empty");
+    }
+
+    public String[] getRankingName() {
+        return rankingName;
+    }
+    public String[] getRankingWin() {
+        return rankingWin;
+    }
+
 
 }
 

@@ -11,6 +11,7 @@ import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ public class GameActivity extends AppCompatActivity {
     GameManager gameManager;
     final Context context = this;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -40,7 +42,7 @@ public class GameActivity extends AppCompatActivity {
         ImageView computerimageView = (ImageView) findViewById(R.id.computer_turn);
         ImageView myimageView = (ImageView) findViewById(R.id.my_turn);
 
-        gameHandler = new GameThread(countTextView , this);
+        gameHandler = new GameThread(countTextView, this );
         gameManager = new GameManager();
 
 
@@ -102,7 +104,6 @@ public class GameActivity extends AppCompatActivity {
                         }
 
 
-
                         scissorsbtn.setVisibility(View.INVISIBLE);
                         rockbtn.setVisibility(View.INVISIBLE);
                         papersbtn.setVisibility(View.INVISIBLE);
@@ -123,7 +124,9 @@ public class GameActivity extends AppCompatActivity {
                         Message message = gameHandler.obtainMessage();
                         Bundle bundle = new Bundle();
                         bundle.putString("msg", gameManager.compare());
-                        bundle.putBoolean("isfinish",!gameManager.finishGame());
+                        bundle.putString("wincount", ""+gameManager.getWinCount());
+                        bundle.putBoolean("isfinish", !gameManager.finishGame());
+
                         message.setData(bundle);
                         gameHandler.sendMessage(message);
 
