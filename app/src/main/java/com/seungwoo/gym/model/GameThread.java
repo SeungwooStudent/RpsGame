@@ -18,13 +18,14 @@ public class GameThread extends Handler {
     TextView countTextView;
     Context context;
     EditText editText;
+    GameManager gameManager;
 
 
-    public GameThread(TextView countTextView, Context context) {
+    public GameThread(TextView countTextView, Context context, GameManager gameManager) {
 
         this.countTextView = countTextView;
         this.context = context;
-
+        this.gameManager = gameManager;
     }
 
 
@@ -34,6 +35,7 @@ public class GameThread extends Handler {
         countTextView.setText(bundle.getString("msg"));
         boolean finishgame = bundle.getBoolean("isfinish", false);
         int wincount = bundle.getInt("wincount", 0);
+        Log.d("seungwoo", "wincount : " + wincount);
         editText = new EditText(context);
 
 
@@ -57,6 +59,7 @@ public class GameThread extends Handler {
                                         DialogInterface dialog, int id) {
                                     // 프로그램을 종료한다
 //                                  GameActivity.this.finish();
+                                    gameManager.setWinCount(0);
                                     dialog.cancel();
                                 }
                             })
@@ -73,6 +76,7 @@ public class GameThread extends Handler {
                                                     String strText = editText.getText().toString();
                                                     SharedPreferencesManager sf = SharedPreferencesManager.getInstance();
                                                     sf.saveData(strText, wincount);
+                                                    gameManager.setWinCount(0);
                                                     Intent intent = new Intent(context, GameMain.class);
                                                     context.startActivity(intent);
                                                     ((Activity)context).finish();
@@ -81,8 +85,8 @@ public class GameThread extends Handler {
                                     alertDialogBuilder.setNegativeButton("취소",
                                             new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int id) {
+                                                    gameManager.setWinCount(0);
                                                     dialog.cancel();
-
                                                 }
                                             });
                                     alertDialogBuilder.show();
@@ -98,6 +102,7 @@ public class GameThread extends Handler {
 
             // 다이얼로그 보여주기
             alertDialog.show();
+
         }
     }
 }

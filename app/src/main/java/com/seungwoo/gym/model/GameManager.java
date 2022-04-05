@@ -7,7 +7,7 @@ import java.util.LinkedList;
 public class GameManager {
     private int userChoice;
     private int computerChoice;
-    private int winCount = 0;
+    private int winCount = 5;
 
     LinkedList<GameMember> members = new LinkedList<>();
 
@@ -68,10 +68,10 @@ public class GameManager {
         Log.d("seungwoo", "computer = " + computerChoice);
         if (userChoice == 1) { //가위
             if (computerChoice == 1) { //가위
-                winCount = 0;
+
                 return "비겼습니다";
             } else if (computerChoice == 2) { //바위
-                winCount = 0;
+
                 return "computer 승 !";
             } else {
                 winCount++;
@@ -80,24 +80,24 @@ public class GameManager {
             }
         } else if (userChoice == 2) { //바위
             if (computerChoice == 2) { //바위
-                winCount = 0;
+
                 return "비겼습니다";
             } else if (computerChoice == 1) { //가위
                 winCount++;
                 return "user 승 !";
             } else {
-                winCount = 0;
+
                 return "computer 승 !";
             }
         } else {
             if (computerChoice == 3) { //보
-                winCount = 0;
+
                 return "비겼습니다";
             } else if (computerChoice == 2) { //바위
                 winCount++;
                 return "user 승 !";
             } else {
-                winCount = 0;
+
                 return "computer 승 !";
             }
         }

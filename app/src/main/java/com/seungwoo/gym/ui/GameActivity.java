@@ -1,9 +1,12 @@
 package com.seungwoo.gym.ui;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,6 +21,7 @@ import java.util.Random;
 
 
 public class GameActivity extends AppCompatActivity {
+
     Handler gameHandler;
     GameManager gameManager;
     final Context context = this;
@@ -37,8 +41,9 @@ public class GameActivity extends AppCompatActivity {
         ImageView computerimageView = (ImageView) findViewById(R.id.computer_turn);
         ImageView myimageView = (ImageView) findViewById(R.id.my_turn);
 
-        gameHandler = new GameThread(countTextView, this );
         gameManager = new GameManager();
+        gameHandler = new GameThread(countTextView, this, gameManager);
+
 
 
         scissorsbtn.setVisibility(View.INVISIBLE);
@@ -73,13 +78,13 @@ public class GameActivity extends AppCompatActivity {
         startbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 scissorsbtn.setVisibility(View.VISIBLE);
                 rockbtn.setVisibility(View.VISIBLE);
                 papersbtn.setVisibility(View.VISIBLE);
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
-
 
                         String gameText[] = {"게임을 시작합니다", "가위", "바위", "보"};
 
@@ -120,6 +125,7 @@ public class GameActivity extends AppCompatActivity {
                         Bundle bundle = new Bundle();
                         bundle.putString("msg", gameManager.compare());
                         bundle.putBoolean("isfinish", !gameManager.finishGame());
+                        Log.d("seungwoo", "pre wincount : " + gameManager.getWinCount());
                         bundle.putInt("wincount", gameManager.getWinCount());
 
                         message.setData(bundle);

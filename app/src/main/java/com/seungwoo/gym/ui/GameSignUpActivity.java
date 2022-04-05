@@ -40,9 +40,9 @@ public class GameSignUpActivity extends AppCompatActivity {
                 String name = ""+editTextName.getText();
 
 
-                GameMember gamemember = new GameMember(id,passWord,passWordCheck,name);
+//                GameMember gamemember = new GameMember(id,passWord,passWordCheck,name);
 
-                gameManager.addMember(gamemember);
+//                gameManager.addMember(gamemember);
 
 
             }
