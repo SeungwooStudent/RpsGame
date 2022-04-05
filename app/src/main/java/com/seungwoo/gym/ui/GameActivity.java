@@ -1,23 +1,18 @@
-package com.seungwoo.gym;
+package com.seungwoo.gym.ui;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.PersistableBundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import com.seungwoo.gym.model.GameManager;
+import com.seungwoo.gym.model.GameThread;
+import com.seungwoo.gym.R;
 
 import java.util.Random;
 
@@ -124,8 +119,8 @@ public class GameActivity extends AppCompatActivity {
                         Message message = gameHandler.obtainMessage();
                         Bundle bundle = new Bundle();
                         bundle.putString("msg", gameManager.compare());
-                        bundle.putString("wincount", ""+gameManager.getWinCount());
                         bundle.putBoolean("isfinish", !gameManager.finishGame());
+                        bundle.putInt("wincount", gameManager.getWinCount());
 
                         message.setData(bundle);
                         gameHandler.sendMessage(message);

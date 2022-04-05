@@ -1,4 +1,4 @@
-package com.seungwoo.gym;
+package com.seungwoo.gym.model;
 
 import android.util.Log;
 

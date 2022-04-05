@@ -1,13 +1,14 @@
-package com.seungwoo.gym;
+package com.seungwoo.gym.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import com.seungwoo.gym.model.GameManager;
+import com.seungwoo.gym.model.GameMember;
+import com.seungwoo.gym.R;
 
 public class GameSignUpActivity extends AppCompatActivity {
     GameManager gameManager;

@@ -1,4 +1,4 @@
-package com.seungwoo.gym;
+package com.seungwoo.gym.model;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -11,6 +11,8 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
+import com.seungwoo.gym.model.SharedPreferencesManager;
+import com.seungwoo.gym.ui.GameMain;
 
 public class GameThread extends Handler {
     TextView countTextView;
@@ -31,10 +33,8 @@ public class GameThread extends Handler {
         Bundle bundle = message.getData();
         countTextView.setText(bundle.getString("msg"));
         boolean finishgame = bundle.getBoolean("isfinish", false);
-        String wincount = bundle.getString("wincount", "empty");
+        int wincount = bundle.getInt("wincount", 0);
         editText = new EditText(context);
-
-//        boolean finishgame = gameManager.finishGame();
 
 
         if (finishgame) {
@@ -43,11 +43,12 @@ public class GameThread extends Handler {
                     context);
 
 
-            alertDialogBuilder.setTitle("게임이 종료되었습니다");
+
+            alertDialogBuilder.setTitle("게임이 종료되었습니다 다시 시작하려면 YES를 눌러주세요");
+
 
 
             alertDialogBuilder
-                    .setMessage("다시 시작하시겠습니까?")
                     .setMessage("NO를 누르시면 랭킹이 등록됩니다")
                     .setCancelable(false)
                     .setPositiveButton("YES",

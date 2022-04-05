@@ -1,4 +1,4 @@
-package com.seungwoo.gym;
+package com.seungwoo.gym.model;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 
 public class SharedPreferencesManager {
     String rankingName[];
-    String rankingWin[];
+    int rankingWin[];
     private SharedPreferences sharedPref;
 
     private static SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager();
@@ -23,35 +23,33 @@ public class SharedPreferencesManager {
             sharedPref = context.getSharedPreferences("ranking", Context.MODE_PRIVATE);
         }
         rankingName = new String[3];
-        rankingWin = new String[3];
+        rankingWin = new int[3];
     }
 
-    public void saveData(String name, String win) {
+    public void saveData(String name, int win) {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("rankingname1", name);
-        editor.putString("rankingwin1", win);
+        editor.putInt("rankingwin1",win);
         editor.putString("rankingname2", name);
-        editor.putString("rankingwin2", win);
+        editor.putInt("rankingwin2",win);
         editor.putString("rankingname3", name);
-        editor.putString("rankingwin3", win);
+        editor.putInt("rankingwin3",win);
         editor.commit();
     }
 
     public void readData() {
         rankingName[0] = sharedPref.getString("rankingname1", "empty");
-        rankingWin[0] = sharedPref.getString("rankingwin1", "empty");
+        rankingWin[0] = sharedPref.getInt("rankingwin1", 0);
         rankingName[1] = sharedPref.getString("rankingname2", "empty");
-        rankingWin[1] = sharedPref.getString("rankingwin2", "empty");
+        rankingWin[1] = sharedPref.getInt("rankingwin2", 0);
         rankingName[2] = sharedPref.getString("rankingname3", "empty");
-        rankingWin[2] = sharedPref.getString("rankingwin3", "empty");
+        rankingWin[2] = sharedPref.getInt("rankingwin3", 0);
     }
 
     public String[] getRankingName() {
         return rankingName;
     }
-    public String[] getRankingWin() {
-        return rankingWin;
-    }
+    public int[] getRankingWin() { return rankingWin; }
 
 
 }

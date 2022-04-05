@@ -1,4 +1,4 @@
-package com.seungwoo.gym;
+package com.seungwoo.gym.model;
 
 import java.util.LinkedList;
 public class GymManager {

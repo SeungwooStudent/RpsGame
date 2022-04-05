@@ -1,13 +1,14 @@
-package com.seungwoo.gym;
+package com.seungwoo.gym.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import com.seungwoo.gym.model.GymManager;
+import com.seungwoo.gym.model.Member;
+import com.seungwoo.gym.R;
 
 public class SignUpActivity extends AppCompatActivity {
     EditText editTextId;
@@ -32,15 +33,15 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                String name = ""+editTextName.getText();
-                int age = Integer.parseInt(""+editTextAge.getText());
-                String phoneNumber = ""+editTextPhoneNumber.getText();
-                String date = ""+editTextDate.getText();
-
-                Member member = new Member(name,age,phoneNumber,date);
-
-                gymManager.addMember(member);
-                gymManager.printAll();
+//                String name = ""+editTextName.getText();
+//                int age = Integer.parseInt(""+editTextAge.getText());
+//                String phoneNumber = ""+editTextPhoneNumber.getText();
+//                String date = ""+editTextDate.getText();
+//
+//                Member member = new Member(name,age,phoneNumber,date);
+//
+//                gymManager.addMember(member);
+//                gymManager.printAll();
 
             }
 
